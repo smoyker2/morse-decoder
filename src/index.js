@@ -38,7 +38,61 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let fullsentence = '';
+    for(let i =0; i< expr.length;)
+    {
+        if(expr[i] == '*')
+        {
+            fullsentence += ' ';
+        }
+        else
+        {
+        let currentdecoding = '';
+        let sendtodecode = '';
+        let currentsymbol = '';
+        let receiveddecode;
+        for(let j = 0; j < 10;j++)
+        {
+            currentdecoding += expr[i+j]//0000101110
+        }
+        sendtodecode = rawdecode(currentdecoding);
+        fullsentence += sendtodecode; 
+        }
+        i++;i++;i++;i++;i++;i++;i++;i++;i++;i++;
+    }
+    return fullsentence;
+}
+function rawdecode(numbers)
+{
+    let foundedsymbol = '';
+    for (let k = 0;k<numbers.length;)
+    {
+        if (numbers[k] == 0)
+        {
+            k++;
+        }
+        if (numbers[k] == 1)
+        {
+            if(numbers[k + 1] == 1)
+            {
+                foundedsymbol += '-';
+                k++;
+                k++;
+            }
+            else if(numbers[k+1] == 0)
+            {
+                foundedsymbol += '.'
+                k++;
+                k++;
+            }
+        }
+    }
+    const convert = (string) => {
+        return foundedsymbol.split().map(sps => {
+            return MORSE_TABLE[sps] ? MORSE_TABLE[sps] : sps;
+    }).join("");
+    };
+    return convert(foundedsymbol);
 }
 
 module.exports = {
